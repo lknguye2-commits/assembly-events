@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assembly — Corporate Event Planning, San Diego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1B2D;
+    --ink-soft:#16283F;
+    --paper:#F5F3EC;
+    --paper-dim:#EAE6DA;
+    --brass:#C08A3E;
+    --brass-light:#E0B368;
+    --slate:#5C7080;
+    --text-dark:#12181F;
+    --text-mute:#5B6470;
+    --line:rgba(15,27,45,0.14);
+    --line-on-dark:rgba(245,243,236,0.16);
+    --display:'Space Grotesk', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    background:var(--paper);
+    color:var(--text-dark);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+  :focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- Eyebrow / labels ---------- */
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px;height:1px;
+    background:var(--brass);
+    display:inline-block;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    padding:22px 0;
+    transition:background .35s ease, padding .35s ease, border-color .35s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(245,243,236,0.92);
+    backdrop-filter:blur(10px);
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .logo{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:21px;
+    letter-spacing:0.02em;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .logo span{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--brass);
+    font-weight:400;
+    letter-spacing:0.06em;
+  }
+  nav ul{display:flex;gap:38px;list-style:none;}
+  nav a{
+    font-size:14px;
+    font-weight:500;
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav a::after{
+    content:"";
+    position:absolute;left:0;bottom:0;
+    width:0;height:1px;
+    background:var(--brass);
+    transition:width .25s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-links{display:flex;align-items:center;gap:38px;}
+  .nav-cta{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    background:var(--ink);
+    color:var(--paper);
+    padding:11px 20px;
+    border-radius:2px;
+    transition:background .25s ease;
+  }
+  .nav-cta:hover{background:var(--brass);}
+  .menu-toggle{display:none;background:none;border:none;flex-direction:column;gap:5px;}
+  .menu-toggle span{width:24px;height:2px;background:var(--ink);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:140px 0 80px;
+    background:var(--ink);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(var(--line-on-dark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-on-dark) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.5;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 90%);
+  }
+  .hero .wrap{
+    position:relative;z-index:2;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero-eyebrow{color:var(--brass-light);}
+  .hero-eyebrow::before{background:var(--brass-light);}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(40px, 5.2vw, 68px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin:22px 0 22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--brass-light);
+  }
+  .hero p.lede{
+    font-size:18px;
+    color:rgba(245,243,236,0.78);
+    max-width:480px;
+    margin-bottom:36px;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    background:var(--brass);
+    color:var(--ink);
+    padding:16px 28px;
+    border-radius:2px;
+    font-weight:500;
+    transition:background .25s ease, transform .25s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:var(--brass-light); transform:translateY(-2px);}
+  .btn-ghost{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    border:1px solid var(--line-on-dark);
+    color:var(--paper);
+    padding:16px 28px;
+    border-radius:2px;
+    transition:border-color .25s ease, background .25s ease;
+    display:inline-block;
+  }
+  .btn-ghost:hover{border-color:var(--brass-light); background:rgba(224,179,104,0.08);}
+
+  /* signature: exploded assembly diagram */
+  .diagram{
+    position:relative;
+    height:440px;
+  }
+  .diagram .node{
+    position:absolute;
+    border:1px solid var(--line-on-dark);
+    background:rgba(245,243,236,0.03);
+    border-radius:2px;
+    padding:14px 16px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.05em;
+    color:rgba(245,243,236,0.85);
+    opacity:0;
+    transform:translateY(14px);
+    animation:assemble .8s cubic-bezier(.16,.8,.3,1) forwards;
+  }
+  .diagram .node b{
+    display:block;
+    font-family:var(--display);
+    font-size:16px;
+    color:var(--paper);
+    font-weight:500;
+    margin-bottom:2px;
+  }
+  .diagram .n1{top:0; left:6%; width:170px; animation-delay:.15s;}
+  .diagram .n2{top:14%; right:0; width:150px; animation-delay:.35s;}
+  .diagram .n3{top:44%; left:0; width:160px; animation-delay:.55s;}
+  .diagram .n4{top:58%; right:8%; width:150px; animation-delay:.75s;}
+  .diagram .n5{top:80%; left:16%; width:170px; animation-delay:.95s;}
+  .diagram .core{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:108px;height:108px;
+    border:1px solid var(--brass-light);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    font-family:var(--display);
+    font-size:13px;
+    color:var(--brass-light);
+    letter-spacing:0.03em;
+    background:var(--ink);
+    z-index:3;
+    opacity:0;
+    animation:core-in .7s ease forwards;
+    animation-delay:1.1s;
+  }
+  .diagram svg.lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
+  .diagram svg.lines path{
+    stroke:var(--line-on-dark);
+    stroke-width:1;
+    fill:none;
+    stroke-dasharray:200;
+    stroke-dashoffset:200;
+    animation:draw-line 1s ease forwards;
+  }
+  .diagram svg.lines path:nth-child(1){animation-delay:.5s;}
+  .diagram svg.lines path:nth-child(2){animation-delay:.7s;}
+  .diagram svg.lines path:nth-child(3){animation-delay:.9s;}
+  .diagram svg.lines path:nth-child(4){animation-delay:1.1s;}
+  .diagram svg.lines path:nth-child(5){animation-delay:1.3s;}
+
+  @keyframes assemble{to{opacity:1; transform:translateY(0);}}
+  @keyframes core-in{to{opacity:1;}}
+  @keyframes draw-line{to{stroke-dashoffset:0;}}
+
+  /* ---------- Stats bar ---------- */
+  .stats{
+    background:var(--paper-dim);
+    border-bottom:1px solid var(--line);
+  }
+  .stats .wrap{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    padding:44px 32px;
+  }
+  .stat{
+    text-align:center;
+    border-left:1px solid var(--line);
+    padding:0 12px;
+  }
+  .stat:first-child{border-left:none;}
+  .stat .num{
+    font-family:var(--display);
+    font-size:38px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .stat .num span{color:var(--brass);}
+  .stat .label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-mute);
+    margin-top:6px;
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:120px 0;}
+  .section-head{
+    max-width:640px;
+    margin-bottom:64px;
+  }
+  .section-head h2{
+    font-family:var(--display);
+    font-size:clamp(30px,3.4vw,44px);
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin-top:16px;
+    color:var(--ink);
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--text-mute);
+    font-size:16px;
+    max-width:520px;
+  }
+
+  /* ---------- Services ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--paper);
+    padding:36px 32px;
+    position:relative;
+    transition:background .25s ease;
+  }
+  .service-card:hover{background:var(--paper-dim);}
+  .service-card .idx{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--brass);
+    letter-spacing:0.08em;
+  }
+  .service-card h3{
+    font-family:var(--display);
+    font-size:21px;
+    font-weight:600;
+    margin:18px 0 10px;
+    color:var(--ink);
+  }
+  .service-card p{
+    font-size:14.5px;
+    color:var(--text-mute);
+    line-height:1.6;
+  }
+  .service-card::before{
+    content:"";
+    position:absolute;top:20px;right:20px;
+    width:8px;height:8px;
+    border-top:1px solid var(--brass);
+    border-right:1px solid var(--brass);
+    opacity:0;
+    transition:opacity .25s ease;
+  }
+  .service-card:hover::before{opacity:1;}
+
+  /* ---------- Process ---------- */
+  .process{background:var(--ink); color:var(--paper);}
+  .process .section-head h2{color:var(--paper);}
+  .process .section-head p{color:rgba(245,243,236,0.65);}
+  .process .eyebrow{color:var(--brass-light);}
+  .process .eyebrow::before{background:var(--brass-light);}
+  .stages{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    position:relative;
+  }
+  .stages::before{
+    content:"";
+    position:absolute;
+    top:22px;left:0;right:0;
+    height:1px;
+    background:var(--line-on-dark);
+  }
+  .stage{
+    padding:0 24px 0 0;
+    position:relative;
+  }
+  .stage .dot{
+    width:44px;height:44px;
+    border-radius:50%;
+    border:1px solid var(--brass-light);
+    background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--brass-light);
+    position:relative;z-index:2;
+    margin-bottom:26px;
+  }
+  .stage h4{
+    font-family:var(--display);
+    font-size:19px;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .stage p{
+    font-size:14px;
+    color:rgba(245,243,236,0.62);
+    line-height:1.65;
+    max-width:230px;
+  }
+
+  /* ---------- Work / gallery ---------- */
+  .work-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .work-item{
+    aspect-ratio:4/3;
+    background:linear-gradient(155deg, var(--paper-dim), #DCD6C4);
+    border:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding:20px;
+  }
+  .work-item::after{
+    content:"";
+    position:absolute;inset:0;
+    background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:24px 24px;
+    opacity:0.5;
+  }
+  .work-item span{
+    position:relative;z-index:2;
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--text-mute);
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{background:var(--paper-dim);}
+  .t-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .t-card{
+    background:var(--paper);
+    padding:34px 30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    min-height:230px;
+  }
+  .t-card p.quote{
+    font-family:var(--display);
+    font-size:18px;
+    font-weight:500;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .t-card .who{
+    margin-top:24px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-mute);
+    border-top:1px solid var(--line);
+    padding-top:14px;
+  }
+  .t-card .who b{color:var(--ink); font-weight:500;}
+
+  /* ---------- Contact ---------- */
+  .contact .wrap{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:70px;
+  }
+  .contact-info h2{
+    font-family:var(--display);
+    font-size:clamp(30px,3.4vw,44px);
+    font-weight:600;
+    margin:16px 0 20px;
+    color:var(--ink);
+  }
+  .contact-info p{color:var(--text-mute); font-size:16px; max-width:400px; margin-bottom:36px;}
+  .info-row{
+    display:flex;
+    gap:16px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+    font-size:14px;
+  }
+  .info-row:last-child{border-bottom:1px solid var(--line);}
+  .info-row .k{
+    font-family:var(--mono);
+    color:var(--brass);
+    width:110px;
+    flex-shrink:0;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding-top:2px;
+  }
+  .info-row .v{color:var(--text-dark); font-weight:500;}
+
+  form{display:flex; flex-direction:column; gap:18px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-mute);
+    display:block;
+    margin-bottom:8px;
+  }
+  input, select, textarea{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line);
+    padding:10px 2px;
+    font-family:var(--body);
+    font-size:15px;
+    color:var(--text-dark);
+    transition:border-color .25s ease;
+  }
+  input:focus, select:focus, textarea:focus{
+    border-color:var(--brass);
+    outline:none;
+  }
+  textarea{resize:vertical; min-height:90px;}
+  .field{display:flex; flex-direction:column;}
+  .submit-btn{
+    margin-top:10px;
+    align-self:flex-start;
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    background:var(--ink);
+    color:var(--paper);
+    padding:16px 30px;
+    border:none;
+    border-radius:2px;
+    transition:background .25s ease;
+  }
+  .submit-btn:hover{background:var(--brass);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(245,243,236,0.55);
+    padding:48px 0 32px;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  footer .flogo{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:18px;
+    color:var(--paper);
+  }
+  footer .fnav{display:flex; gap:28px; list-style:none; font-size:13px;}
+  footer .fmeta{font-family:var(--mono); font-size:12px;}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .hero .wrap{grid-template-columns:1fr; gap:60px;}
+    .diagram{height:340px; max-width:420px; margin:0 auto;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .stages{grid-template-columns:1fr 1fr; row-gap:50px;}
+    .stages::before{display:none;}
+    .work-grid{grid-template-columns:1fr 1fr;}
+    .t-grid{grid-template-columns:1fr;}
+    .contact .wrap{grid-template-columns:1fr; gap:50px;}
+    .stats .wrap{grid-template-columns:1fr 1fr; row-gap:28px;}
+    .stat:nth-child(3){border-left:none;}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 20px;}
+    .nav-links{
+      position:fixed; top:64px; right:0; left:0;
+      background:var(--paper);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:28px 20px;
+      gap:22px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-140%);
+      transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateY(0);}
+    nav ul{flex-direction:column; gap:18px;}
+    .menu-toggle{display:flex;}
+    .services-grid{grid-template-columns:1fr;}
+    .stages{grid-template-columns:1fr;}
+    .work-grid{grid-template-columns:1fr;}
+    .row2{grid-template-columns:1fr;}
+    section{padding:80px 0;}
+    .stats .wrap{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <a href="#top" class="logo">ASSEMBLY <span>/ EVENTS</span></a>
+    <div class="nav-links" id="navLinks">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+    <div style="display:flex; align-items:center; gap:20px;">
+      <a href="#contact" class="nav-cta">Start Planning</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow hero-eyebrow">San Diego · Corporate Events · Est. 2016</div>
+      <h1>Every event has<br>moving parts. We<br><em>assemble</em> them.</h1>
+      <p class="lede">Ten years planning conferences, launches, and executive gatherings across San Diego — where the logistics disappear and only the event remains.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Start a Project</a>
+        <a href="#services" class="btn-ghost">View Services</a>
+      </div>
+    </div>
+    <div class="diagram">
+      <svg class="lines" viewBox="0 0 400 440" preserveAspectRatio="none">
+        <path d="M 170 40 L 200 200"/>
+        <path d="M 320 90 L 220 200"/>
+        <path d="M 80 220 L 190 220"/>
+        <path d="M 300 280 L 220 240"/>
+        <path d="M 190 350 L 210 240"/>
+      </svg>
+      <div class="node n1"><b>Venue</b>selection &amp; contracts</div>
+      <div class="node n2"><b>Catering</b>menu &amp; service</div>
+      <div class="node n3"><b>Production</b>AV, staging, lighting</div>
+      <div class="node n4"><b>Logistics</b>travel, timing, staff</div>
+      <div class="node n5"><b>Guest Exp.</b>registration, flow</div>
+      <div class="core">YOUR<br>EVENT</div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat">
+      <div class="num"><span>150</span>+</div>
+      <div class="label">Events Delivered</div>
+    </div>
+    <div class="stat">
+      <div class="num">10</div>
+      <div class="label">Years in Practice</div>
+    </div>
+    <div class="stat">
+      <div class="num">50</div>
+      <div class="label">Corporate Clients</div>
+    </div>
+    <div class="stat">
+      <div class="num">0</div>
+      <div class="label">Missed Deadlines</div>
+    </div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Services</div>
+      <h2>Built around what your event actually needs</h2>
+      <p>Every engagement is scoped to the specific components your event requires — no bloated packages, no missing pieces.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="idx">01</div>
+        <h3>Corporate Happy Hours</h3>
+        <p>Low-lift, high-turnout gatherings — venue, drinks, and flow handled so your team just has to show up.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="idx">02</div>
+        <h3>Holiday Parties</h3>
+        <p>Year-end celebrations that feel considered, not templated — from venue and catering to the small touches guests remember.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="idx">03</div>
+        <h3>Networking Mixers</h3>
+        <p>Structured enough to spark real connections, relaxed enough that no one feels like they're working the room alone.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="idx">04</div>
+        <h3>Grand Openings</h3>
+        <p>First impressions, planned to the minute — press, guest flow, and staging that make launch day feel effortless.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="idx">05</div>
+        <h3>Workshops &amp; Training Events</h3>
+        <p>Full-day and half-day sessions with logistics that stay out of the way of the actual learning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Process</div>
+      <h2>How a project gets assembled</h2>
+      <p>Four stages, the same order every time — so nothing gets built before the foundation is set.</p>
+    </div>
+    <div class="stages">
+      <div class="stage reveal">
+        <div class="dot">01</div>
+        <h4>Brief</h4>
+        <p>A working session to pin down objective, audience, budget, and date — the fixed points everything else is built around.</p>
+      </div>
+      <div class="stage reveal">
+        <div class="dot">02</div>
+        <h4>Blueprint</h4>
+        <p>A full event plan: venue, vendors, timeline, and budget laid out for sign-off before anything is booked.</p>
+      </div>
+      <div class="stage reveal">
+        <div class="dot">03</div>
+        <h4>Build</h4>
+        <p>Contracts, bookings, and coordination across every vendor — run by us, visible to you.</p>
+      </div>
+      <div class="stage reveal">
+        <div class="dot">04</div>
+        <h4>Execute</h4>
+        <p>On-site management from load-in to load-out, with a single point of contact handling every issue that comes up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Selected Work</div>
+      <h2>A sample of what's been assembled</h2>
+      <p>A cross-section of recent corporate work across San Diego — conference halls, waterfront venues, and everything in between.</p>
+    </div>
+    <div class="work-grid">
+      <div class="work-item reveal"><span>Happy Hour — Gaslamp Quarter</span></div>
+      <div class="work-item reveal"><span>Holiday Party — Little Italy</span></div>
+      <div class="work-item reveal"><span>Networking Mixer — Downtown SD</span></div>
+      <div class="work-item reveal"><span>Grand Opening — North Park</span></div>
+      <div class="work-item reveal"><span>Training Workshop — Sorrento Valley</span></div>
+      <div class="work-item reveal"><span>Networking Mixer — Little Italy</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">About Assembly</div>
+      <h2>Ten years, one point of contact</h2>
+      <p>Assembly is a San Diego-based corporate event planning practice. Every project runs through a single planner from first brief to final teardown — no account handoffs, no lost context.</p>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal">
+        <p class="quote">"The run-of-show was down to the minute. Nothing about our launch felt improvised."</p>
+        <div class="who">Marketing Director · <b>SaaS Company, Downtown SD</b></div>
+      </div>
+      <div class="t-card reveal">
+        <p class="quote">"We handed over the brief and never had to think about logistics again."</p>
+        <div class="who">Head of People · <b>Biotech Firm, Sorrento Valley</b></div>
+      </div>
+      <div class="t-card reveal">
+        <p class="quote">"Assembly caught a vendor issue two days out and fixed it before we even knew."</p>
+        <div class="who">VP Operations · <b>Financial Services Group</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-info reveal">
+      <div class="eyebrow">Get in Touch</div>
+      <h2>Let's assemble your next event</h2>
+      <p>Tell us the date, the size, and the objective. We'll follow up within one business day with next steps.</p>
+      <div class="info-row"><div class="k">Email</div><div class="v">hello@assemblyevents.com</div></div>
+      <div class="info-row"><div class="k">Phone</div><div class="v">(619) 555-0142</div></div>
+      <div class="info-row"><div class="k">Based In</div><div class="v">San Diego, CA</div></div>
+      <div class="info-row"><div class="k">Service Area</div><div class="v">San Diego County &amp; Southern CA</div></div>
+    </div>
+    <form class="reveal" onsubmit="event.preventDefault(); this.reset(); document.getElementById('formNote').style.display='block';">
+      <div class="row2">
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input id="name" type="text" required>
+        </div>
+        <div class="field">
+          <label for="company">Company</label>
+          <input id="company" type="text" required>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="eventtype">Event Type</label>
+          <select id="eventtype">
+            <option>Conference / Summit</option>
+            <option>Product Launch</option>
+            <option>Executive Retreat</option>
+            <option>Gala / Awards</option>
+            <option>Team Offsite</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="details">Event Details</label>
+        <textarea id="details" placeholder="Date, guest count, venue ideas, objective..."></textarea>
+      </div>
+      <button class="submit-btn" type="submit">Send Inquiry</button>
+      <p id="formNote" style="display:none; font-family:var(--mono); font-size:12px; color:var(--brass);">Thanks — this is a demo form. Connect it to your email or CRM to go live.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo">ASSEMBLY</div>
+    <ul class="fnav">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="fmeta">© 2026 Assembly Events, San Diego CA</div>
+  </div>
+</footer>
+
+<script>
+  // Header background on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
